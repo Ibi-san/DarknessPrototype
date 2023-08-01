@@ -5,21 +5,21 @@ public class UnitHealth : MonoBehaviour
 {
     [SerializeField] private Unit _unit;
 
-    public event Action<float> OnHealthChanged;
+    public event Action<int> OnHealthChanged;
 
-    public float MaxHealth { get; private set; }
+    public int MaxHealth { get; private set; }
 
-    public float Health 
+    public int Health 
     { 
         get => _health; 
         set 
         { 
-            _health = Mathf.Clamp(value, 0f, MaxHealth);
+            _health = Mathf.Clamp(value, 0, MaxHealth);
             OnHealthChanged?.Invoke(_health);
         } 
     }
 
-    private float _health;
+    private int _health;
 
     private void Awake()
     {

@@ -13,7 +13,7 @@ public class PlayerUnit : Unit, IDamageable
         _unitAttack = GetComponent<UnitAttack>();
     }
 
-    public void ApplyDamage(float damage)
+    public void ApplyDamage(int damage)
     {
         if (damage < 0)
             throw new ArgumentOutOfRangeException(nameof(damage));
@@ -23,7 +23,7 @@ public class PlayerUnit : Unit, IDamageable
         _unitHealth.Health -= totalDamage;
     }
 
-    private float ProcessDamage(float damage)
+    private int ProcessDamage(int damage)
     {
         return damage; //добавить мультипликаторы урона
     }

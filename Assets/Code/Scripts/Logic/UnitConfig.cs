@@ -9,16 +9,16 @@ public sealed class UnitConfig : ScriptableObject
 
     [Header("[Common]"), Space]
 
-    [SerializeField, Min(0)] private float _health;
-    [SerializeField, Min(0)] private float _damage;
-    [SerializeField, Min(0)] private float _speed;
+    [SerializeField, Min(0)] private int _health;
+    [SerializeField, Min(0)] private int _damage;
+    [SerializeField, Min(0)] private int _speed;
 
     [Header("[Prefab]"), Space]
 
     [SerializeField] private Unit _unitPrefab;
 
     public string Name => _unitName;
-    public float Health => _health;
-    public float Damage => _damage;
-    public float Speed => _speed;
+    public int Health => _health;
+    public int Damage => _damage;
+    public int Speed => _speed;
 }
