@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4861ec226e5bfa47be8b685e93d63f5, type: 3}
-  m_Name: Player
+  m_Name: Mannequin
   m_EditorClassIdentifier: 
   _unitName: 
-  _health: 15
-  _damage: 1
+  _health: 3
+  _damage: 0
   _speed: 0
   _unitPrefab: {fileID: 0}
