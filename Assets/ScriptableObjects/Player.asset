@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   _unitName: 
-  _health: 0
+  _health: 15
   _damage: 0
   _speed: 0
   _unitPrefab: {fileID: 0}

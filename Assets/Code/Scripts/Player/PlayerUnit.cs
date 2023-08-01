@@ -13,6 +13,15 @@ public class PlayerUnit : Unit, IDamageable
         _unitAttack = GetComponent<UnitAttack>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            ApplyDamage(1);
+            Debug.Log("Текущее здоровье: " + _unitHealth.Health);
+        }
+    }
+
     public void ApplyDamage(int damage)
     {
         if (damage < 0)
