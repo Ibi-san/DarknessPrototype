@@ -31,9 +31,9 @@ public class UnitAttack : MonoBehaviour
         Damage = _unit.Config.Damage;
     }
 
-    public void PerformAttack(IDamageable recipientDamagable)
+    public void PerformAttack(IDamageable recipientDamageable)
     {
-        recipientDamagable.ApplyDamage(Damage);
+        recipientDamageable.ApplyDamage(Damage);
     }
 }
 
