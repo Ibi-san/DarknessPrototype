@@ -4,14 +4,29 @@ using UnityEngine;
 [RequireComponent (typeof(UnitHealth), typeof(UnitAttack))]
 public class PlayerUnit : Unit, IDamageable
 {
-    public float AttackRadius = 1f;
-    public float AttackDuration = 0.25f;
-    public float AttackDelay = 0.5f;
+    [Header("Set in Inspector")]
+    [Header("Melee")]
+    public float MeleeAttackRadius = 1f;
+    public float MeleeAttackDuration = 0.25f;
+    public float MeleeAttackDelay = 0.5f;
 
-    public Transform AttackPosition;
+    public Transform MeleeAttackPosition;
     
-    private float _timeAtkDone = 0;
-    private float _timeAtkNext = 0;
+    [Header("Projectile")]
+    public float ProjectileAttackDuration = 0.25f;
+    public float ProjectileAttackDelay = 0.5f;
+    
+    [SerializeField] private Transform _weaponMuzzle;
+    [SerializeField] private Projectile _projectilePrefab;
+    [SerializeField] private ForceMode2D _forceMode = ForceMode2D.Impulse;
+    [SerializeField, Min(0f)] private float _force = 10f;
+
+    
+    private float _timeMeleeAtkDone = 0;
+    private float _timeMeleeAtkNext = 0;
+
+    private float _timeProjectileAtkDone = 0;
+    private float _timeProjectileAtkNext = 0;
 
     private UnitHealth _unitHealth;
     private UnitAttack _unitAttack;
@@ -30,22 +45,29 @@ public class PlayerUnit : Unit, IDamageable
             Debug.Log("Текущее здоровье: " + _unitHealth.Health);
         }
 
-        if (Input.GetMouseButtonDown(0) && Time.time >= _timeAtkNext)
+        if (Input.GetMouseButtonDown(0) && Time.time >= _timeMeleeAtkNext)
         {
-            PerformAttack();
-            _timeAtkDone = Time.time + AttackDuration;
-            _timeAtkNext = Time.time + AttackDelay;
+            PerformAttackMelee();
+            _timeMeleeAtkDone = Time.time + MeleeAttackDuration;
+            _timeMeleeAtkNext = Time.time + MeleeAttackDelay;
+        }
+
+        if (Input.GetMouseButtonDown(1) && Time.time >= _timeProjectileAtkNext)
+        {
+            PerformAttackProjectile();
+            _timeProjectileAtkDone = Time.time + ProjectileAttackDuration;
+            _timeProjectileAtkNext = Time.time + ProjectileAttackDelay;
         }
     }
 
-    private void PerformAttack()
+    private void PerformAttackMelee()
     {
         int damagableLayer = LayerMask.NameToLayer("Damagable");
         int hitableLayer = LayerMask.NameToLayer("Hitable");
 
         LayerMask layerMask = (1 << damagableLayer) | (1 << hitableLayer);
 
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(AttackPosition.position, AttackRadius);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(MeleeAttackPosition.position, MeleeAttackRadius);
 
         foreach (var hitCollider in hitColliders)
         {
@@ -62,6 +84,12 @@ public class PlayerUnit : Unit, IDamageable
         }
     }
 
+    public void PerformAttackProjectile()
+    {
+        var projectile = Instantiate(_projectilePrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
+
+        projectile.Rigidbody2D.AddForce(_weaponMuzzle.forward * _force, _forceMode);
+    }
     public void ApplyDamage(int damage)
     {
         if (damage < 0)

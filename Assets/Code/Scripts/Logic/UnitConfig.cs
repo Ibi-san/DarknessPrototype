@@ -21,4 +21,9 @@ public sealed class UnitConfig : ScriptableObject
     public int Health => _health;
     public int Damage => _damage;
     public int Speed => _speed;
+
+    public bool IsAlive()
+    {
+        return _health > 0f;
+    }
 }
