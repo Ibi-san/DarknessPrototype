@@ -84,7 +84,6 @@ public class PlayerInsanity : MonoBehaviour
 
     private async void InsanityRise(CancellationToken token)
     {
-        print("async started");
         try
         {
             while (!token.IsCancellationRequested)
