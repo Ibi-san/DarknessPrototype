@@ -1,7 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-[RequireComponent (typeof(UnitHealth), typeof(UnitAttack))]
+[RequireComponent (
+    typeof(UnitHealth), 
+    typeof(UnitAttack),
+    typeof(PlayerInsanity))]
 public class PlayerUnit : Unit, IDamageable
 {
     [Header("Set in Inspector")]
@@ -28,13 +31,17 @@ public class PlayerUnit : Unit, IDamageable
     private float _timeProjectileAtkDone = 0;
     private float _timeProjectileAtkNext = 0;
 
+    private float _insanityRiseValue = 0.5f;
+
     private UnitHealth _unitHealth;
     private UnitAttack _unitAttack;
+    private PlayerInsanity _playerInsanity;
     
     private void Awake()
     {
         _unitHealth = GetComponent<UnitHealth>();
         _unitAttack = GetComponent<UnitAttack>();
+        _playerInsanity = GetComponent<PlayerInsanity>();
     }
 
     private void Update()
@@ -62,7 +69,7 @@ public class PlayerUnit : Unit, IDamageable
 
     private void PerformAttackMelee()
     {
-        int damagableLayer = LayerMask.NameToLayer("Damagable");
+        int damagableLayer = LayerMask.NameToLayer("Damageable");
         int hitableLayer = LayerMask.NameToLayer("Hitable");
 
         LayerMask layerMask = (1 << damagableLayer) | (1 << hitableLayer);
@@ -98,6 +105,7 @@ public class PlayerUnit : Unit, IDamageable
         var totalDamage = ProcessDamage(damage);
 
         _unitHealth.Health -= totalDamage;
+        _playerInsanity.InsanityValue += _insanityRiseValue;
     }
 
     private int ProcessDamage(int damage)
