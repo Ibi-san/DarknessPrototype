@@ -11,12 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Damageable
+  - CollisionObj
   - 
   - 
   - 
   - Player
-  - Damagable
+  - Damageable
   - Hitable
   - 
   - 

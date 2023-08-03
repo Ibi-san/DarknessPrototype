@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
+        LookAtMouse();
+
         Vector2 dir = Vector2.zero;
         if (Input.GetKey(KeyCode.A))
         {
@@ -85,5 +88,15 @@ public class Player : MonoBehaviour
         
         Vector2 targetPosition = _rigid.position + (dashDirection * DashSpeed * DashDuration);
         _rigid.MovePosition(targetPosition);
+    }
+
+    private void LookAtMouse()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 lookDir = mousePos - _rigid.position;
+
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+
+        _rigid.rotation = angle;
     }
 }

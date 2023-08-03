@@ -96,6 +96,7 @@ public class PlayerUnit : Unit, IDamageable
         var projectile = Instantiate(_projectilePrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
 
         projectile.Rigidbody2D.AddForce(_weaponMuzzle.forward * _force, _forceMode);
+        Debug.Log(_weaponMuzzle.forward + " - " + _force);
     }
     public void ApplyDamage(int damage)
     {

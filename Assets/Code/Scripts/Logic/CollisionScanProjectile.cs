@@ -4,7 +4,7 @@ public class CollisionScanProjectile : Projectile
 {
     protected override void OnTargetCollision(Collision2D collision2D, IDamageable damageable)
     {
-        int damagableLayer = LayerMask.NameToLayer("Damagable");
+        int damagableLayer = LayerMask.NameToLayer("Damageable");
         int hitableLayer = LayerMask.NameToLayer("Hitable");
 
         LayerMask layerMask = (1 << damagableLayer) | (1 << hitableLayer);

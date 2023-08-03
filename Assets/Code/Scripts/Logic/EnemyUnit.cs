@@ -17,6 +17,15 @@ public class EnemyUnit : Unit, IDamageable
         _unitAttack = GetComponent<UnitAttack>();
     }
 
+    private void Update()
+    {
+        Debug.Log(_unitHealth.Health);
+        if (_unitHealth.Health == 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void ApplyDamage(int damage)
     {
         if (damage < 0)
