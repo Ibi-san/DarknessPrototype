@@ -894,7 +894,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 322259689, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
   m_PrefabInstance: {fileID: 338917327}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1206107961}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8b011e005264604ebe954e72e711b9d, type: 3}
@@ -1017,7 +1017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7636768542889266652, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7636768542889266652, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1163,7 +1163,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -2079,6 +2079,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7636768542889266652, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
   m_PrefabInstance: {fileID: 1087224912}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &1089396522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2114,11 +2115,20 @@ Transform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1089396524
+=======
+--- !u!1 &1206107961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7636768542889266654, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
+  m_PrefabInstance: {fileID: 338917327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1206107970
+>>>>>>> ef403e685eced59c6fd67bbc8db1c700ed67eb25
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1089396522}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -2198,6 +2208,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.6
+=======
+  m_GameObject: {fileID: 1206107961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d302bec5efec9a4fb5ba8c0af17a4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeleeAttackRadius: 1
+  MeleeAttackDuration: 0.25
+  MeleeAttackDelay: 0.5
+  MeleeAttackPosition: {fileID: 143996020}
+  ProjectileAttackDuration: 0.25
+  ProjectileAttackDelay: 0.5
+  _weaponMuzzle: {fileID: 992915282}
+  _projectilePrefab: {fileID: 536645846728944305, guid: 9ab59ddf67de19e42abff3029083c9b8, type: 3}
+  _force: 10
+  _slashPrefab: {fileID: 2561890915069049161, guid: b79fe853f56a1884d8cccc72dae4224f, type: 3}
+>>>>>>> ef403e685eced59c6fd67bbc8db1c700ed67eb25
 --- !u!1 &1226192711
 GameObject:
   m_ObjectHideFlags: 0
@@ -5218,7 +5246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIew/07iOXAIAABQFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMziVjEz5Kb61DSA9JmNBOLr4o0hprkCWPPgIkw3/vSraxS6cnxHtvd9+uVv4kQtkamNNmbQR/1BzItxEJZ/Jl1JMPcKQ7rbbiAzrNq+CuDCIaNS/UCY14GsKsrsAZwb6rnQziBEGvRKFNteI7yLR1FuGCSgtIGe1CtELoc0SO+DNehpATniaLcPrA0zIZnfHIQDkwvbQTdrJG5RWTtKqBB8u9eNKp00amsJlWEYwzLaWwrRPiTnXsNKO19dgHCrig2Fksn97cIlCC2JUuZB6GPxeFBdeaMvR0JwyOqMlLfuhmbhW1+8bZO5U+VJpPo6km5+M/9DiNdGF09dCVTZNQwpWC7V/oiVHrBnMdwncD53E+Byr39E3CawnqSa+N9ooj6YwPod7C5K7/e+ksK4Hte7yxegX6+v+3E3o4x+aPmRTVW6Bupg2wlToOPN49GLyan2g4boZtUyAaXPy28IvuhivUEvfCWIdU26UK9t60N0FKVnFmoRvvMm0URLg1XYOi0p02mMZd3+AVNyh7xdzT8Fja4i3XvYGrkAj3+iS5ojb6cLksW+rDI9jy2TspFPSmA/GEc8q0Us2CDWfShW29KSgbhO284H+vFmHFfDZNp0s6m6ds+fV2nC5mi2Se8Bm/LRbLCZC4e0Jhn1RuGqPtePDWVJ9c4Z5135DR2tA6Ljs39LAWH5UeGhSq0FtmANRzk+LiHAxWwXfJV1zghLbgnFDxwslnTqRme+D5pWYeW10dnaF5nyUntXjXLiA5yeJXIycBvizzxsC7gEMo3iU7k/MfUEsDBBQAAAgIAAAIIewY4euhbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRScpqZqYmhiWWiqZlhsqWFsa6huam5gZlBimmKcZq5pVGqUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAIIew/07iOXAIAABQFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIewY4euhbQAAAHgAAAAJACQAAAAAAAAAAAAAAKkCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAYQMAAAAA
+    dataString: UEsDBBQAAAgIAAAYIew/07iOXAIAABQFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMziVjEz5Kb61DSA9JmNBOLr4o0hprkCWPPgIkw3/vSraxS6cnxHtvd9+uVv4kQtkamNNmbQR/1BzItxEJZ/Jl1JMPcKQ7rbbiAzrNq+CuDCIaNS/UCY14GsKsrsAZwb6rnQziBEGvRKFNteI7yLR1FuGCSgtIGe1CtELoc0SO+DNehpATniaLcPrA0zIZnfHIQDkwvbQTdrJG5RWTtKqBB8u9eNKp00amsJlWEYwzLaWwrRPiTnXsNKO19dgHCrig2Fksn97cIlCC2JUuZB6GPxeFBdeaMvR0JwyOqMlLfuhmbhW1+8bZO5U+VJpPo6km5+M/9DiNdGF09dCVTZNQwpWC7V/oiVHrBnMdwncD53E+Byr39E3CawnqSa+N9ooj6YwPod7C5K7/e+ksK4Hte7yxegX6+v+3E3o4x+aPmRTVW6Bupg2wlToOPN49GLyan2g4boZtUyAaXPy28IvuhivUEvfCWIdU26UK9t60N0FKVnFmoRvvMm0URLg1XYOi0p02mMZd3+AVNyh7xdzT8Fja4i3XvYGrkAj3+iS5ojb6cLksW+rDI9jy2TspFPSmA/GEc8q0Us2CDWfShW29KSgbhO284H+vFmHFfDZNp0s6m6ds+fV2nC5mi2Se8Bm/LRbLCZC4e0Jhn1RuGqPtePDWVJ9c4Z5135DR2tA6Ljs39LAWH5UeGhSq0FtmANRzk+LiHAxWwXfJV1zghLbgnFDxwslnTqRme+D5pWYeW10dnaF5nyUntXjXLiA5yeJXIycBvizzxsC7gEMo3iU7k/MfUEsDBBQAAAgIAAAYIewY4euhbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRScpqZqYmhiWWiqZlhsqWFsa6huam5gZlBimmKcZq5pVGqUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAYIew/07iOXAIAABQFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAYIewY4euhbQAAAHgAAAAJACQAAAAAAAAAAAAAAKkCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAYQMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -5231,7 +5259,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -5250,7 +5278,7 @@ MonoBehaviour:
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:
