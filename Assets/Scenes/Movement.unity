@@ -277,8 +277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitConfig: {fileID: 11400000, guid: b5405ac9ab25b3749b05f4aa283e3201, type: 2}
   _enemyUnitType: 1
-  EnemyAlive: {fileID: 0}
-  EnemyDead: {fileID: 0}
+  EnemyAlive: {fileID: 941390670}
+  EnemyDead: {fileID: 1089396522}
 --- !u!50 &55866599
 Rigidbody2D:
   serializedVersion: 4
@@ -565,37 +565,6 @@ Transform:
   - {fileID: 30373670}
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &143996019
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 143996020}
-  m_Layer: 10
-  m_Name: MeleeAttackPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &143996020
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143996019}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 427022015}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &147585564
 GameObject:
@@ -894,7 +863,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 322259689, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
   m_PrefabInstance: {fileID: 338917327}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206107961}
+  m_GameObject: {fileID: 378911269}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8b011e005264604ebe954e72e711b9d, type: 3}
@@ -994,7 +963,7 @@ PrefabInstance:
     - target: {fileID: 322259687, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
       propertyPath: AttackPosition
       value: 
-      objectReference: {fileID: 143996020}
+      objectReference: {fileID: 0}
     - target: {fileID: 322259687, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
       propertyPath: _projectilePrefab
       value: 
@@ -1007,9 +976,13 @@ PrefabInstance:
       propertyPath: _unit
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 555687269, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 555687270, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7636768542302699522, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
       propertyPath: m_Layer
@@ -1069,11 +1042,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
+--- !u!1 &378911269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7636768542889266654, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
+  m_PrefabInstance: {fileID: 338917327}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &427022015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7636768542889266652, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
   m_PrefabInstance: {fileID: 338917327}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &427022025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378911269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d302bec5efec9a4fb5ba8c0af17a4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeleeAttackRadius: 1
+  MeleeAttackDuration: 0.25
+  MeleeAttackDelay: 0.5
+  MeleeAttackPosition: {fileID: 447664880}
+  ProjectileAttackDuration: 0.25
+  ProjectileAttackDelay: 0.5
+  _weaponMuzzle: {fileID: 992915282}
+  _projectilePrefab: {fileID: 536645846728944305, guid: 9ab59ddf67de19e42abff3029083c9b8, type: 3}
+  _force: 10
+  _slashPrefab: {fileID: 2561890915069049161, guid: b79fe853f56a1884d8cccc72dae4224f, type: 3}
 --- !u!4 &447664880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 555687270, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
@@ -1930,7 +1930,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 427022015}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1055548320
 GameObject:
@@ -2079,7 +2079,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7636768542889266652, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
   m_PrefabInstance: {fileID: 1087224912}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1 &1089396522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,20 +2114,11 @@ Transform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1089396524
-=======
---- !u!1 &1206107961 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7636768542889266654, guid: a49e763801918ac4b9c0710dfb4b6670, type: 3}
-  m_PrefabInstance: {fileID: 338917327}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1206107970
->>>>>>> ef403e685eced59c6fd67bbc8db1c700ed67eb25
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1089396522}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -2208,24 +2198,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.6
-=======
-  m_GameObject: {fileID: 1206107961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d302bec5efec9a4fb5ba8c0af17a4c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MeleeAttackRadius: 1
-  MeleeAttackDuration: 0.25
-  MeleeAttackDelay: 0.5
-  MeleeAttackPosition: {fileID: 143996020}
-  ProjectileAttackDuration: 0.25
-  ProjectileAttackDelay: 0.5
-  _weaponMuzzle: {fileID: 992915282}
-  _projectilePrefab: {fileID: 536645846728944305, guid: 9ab59ddf67de19e42abff3029083c9b8, type: 3}
-  _force: 10
-  _slashPrefab: {fileID: 2561890915069049161, guid: b79fe853f56a1884d8cccc72dae4224f, type: 3}
->>>>>>> ef403e685eced59c6fd67bbc8db1c700ed67eb25
 --- !u!1 &1226192711
 GameObject:
   m_ObjectHideFlags: 0
