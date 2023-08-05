@@ -9,7 +9,7 @@ public class UnitAttack : MonoBehaviour
     public int Damage
     {
         get => _damage;
-        set
+        private set
         {
             _damage = Mathf.Clamp(value, 0, int.MaxValue);
             OnDamageChanged?.Invoke(_damage);
@@ -18,7 +18,7 @@ public class UnitAttack : MonoBehaviour
 
     private int _damage;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Initialize();
     }
