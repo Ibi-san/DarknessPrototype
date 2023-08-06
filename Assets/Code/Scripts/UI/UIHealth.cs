@@ -25,7 +25,7 @@ public class UIHealth : MonoBehaviour
     }
     private void Start()
     {
-        UpdateHealthUI(_unitHealth.Health);
+        UpdateHealthUI(_unitHealth.CurrentHealth);
     }
 
     private void UpdateHealthUI(int currentHealth)

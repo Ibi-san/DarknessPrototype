@@ -1,10 +1,11 @@
-﻿using DG.Tweening;
+﻿using Code.Scripts.Player;
+using DG.Tweening;
 using UnityEngine;
 
-[RequireComponent (typeof(UnitAttack))]
+[RequireComponent (typeof(PlayerStatus))]
 public class PlayerCombat : MonoBehaviour
 {
-    private UnitAttack _unitAttack;
+    private PlayerStatus _playerStatus;
 
     [Header("Set in Inspector")]
     [Header("Melee")]
@@ -33,7 +34,7 @@ public class PlayerCombat : MonoBehaviour
     [Header("EditorTest")]
     [SerializeField] private GameObject _slashPrefab;
 
-    private void Awake() => _unitAttack = GetComponent<UnitAttack>();
+    private void Awake() => _playerStatus = GetComponent<PlayerStatus>();
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && Time.time >= _timeMeleeAtkNext)
@@ -73,8 +74,8 @@ public class PlayerCombat : MonoBehaviour
 
                 if (damageable != null)
                 {
-                    damageable.ApplyDamage(_unitAttack.Damage);
-                    Debug.Log(gameObject.name + " наносит ему - " + hitCollider.name + " урон = " + _unitAttack.Damage);
+                    damageable.ApplyDamage(_playerStatus.PlayerAttack.Damage);
+                    Debug.Log(gameObject.name + " наносит ему - " + hitCollider.name + " урон = " + _playerStatus.PlayerAttack.Damage);
                 }
             }
         }

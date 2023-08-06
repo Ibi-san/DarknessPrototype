@@ -9,19 +9,19 @@ public class UnitHealth : MonoBehaviour
 
     public int MaxHealth { get; private set; }
 
-    public int Health 
+    public int CurrentHealth 
     { 
-        get => _health; 
+        get => _currentHealth; 
         set 
         { 
-            _health = Mathf.Clamp(value, 0, MaxHealth);
-            OnHealthChanged?.Invoke(_health);
+            _currentHealth = Mathf.Clamp(value, 0, MaxHealth);
+            OnHealthChanged?.Invoke(_currentHealth);
         } 
     }
 
-    private int _health;
+    private int _currentHealth;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Initialize();
     }
@@ -32,6 +32,6 @@ public class UnitHealth : MonoBehaviour
             _unit = unit;
 
         MaxHealth = _unit.Config.Health;
-        Health = MaxHealth;
+        CurrentHealth = MaxHealth;
     }
 }

@@ -1,19 +1,18 @@
 ﻿using System;
+using Code.Scripts.Player;
 using UnityEngine;
 
-[RequireComponent (typeof(UnitHealth), typeof(PlayerInsanity))]
-public class PlayerUnit : Unit, IDamageable
+[RequireComponent(typeof(PlayerStatus))]
+public class PlayerHealth : UnitHealth, IDamageable
 {
-    private UnitHealth _unitHealth;
-    private PlayerInsanity _playerInsanity;
+    private PlayerStatus _playerStatus;
 
     private float _insanityRiseValue = 0.5f;
 
-    private void Awake()
+    protected override void Awake()
     {
-        _unitHealth = GetComponent<UnitHealth>();
-        
-        _playerInsanity = GetComponent<PlayerInsanity>();
+        base.Awake();
+        _playerStatus = GetComponent<PlayerStatus>();
     }
 
     private void Update()
@@ -21,7 +20,7 @@ public class PlayerUnit : Unit, IDamageable
         if (Input.GetKeyDown(KeyCode.T))
         {
             ApplyDamage(1);
-            Debug.Log("Текущее здоровье: " + _unitHealth.Health);
+            Debug.Log("Текущее здоровье: " + _playerStatus.PlayerHealth.CurrentHealth);
         }
     }
     
@@ -32,8 +31,8 @@ public class PlayerUnit : Unit, IDamageable
 
         var totalDamage = ProcessDamage(damage);
 
-        _unitHealth.Health -= totalDamage;
-        _playerInsanity.InsanityValue += _insanityRiseValue;
+        _playerStatus.PlayerHealth.CurrentHealth -= totalDamage;
+        _playerStatus.PlayerInsanity.InsanityValue += _insanityRiseValue;
     }
 
     private int ProcessDamage(int damage)

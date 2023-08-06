@@ -36,9 +36,9 @@ public class EnemyUnit : Unit, IDamageable
 
         var totalDamage = ProcessDamage(damage);
 
-        _unitHealth.Health -= totalDamage;
+        _unitHealth.CurrentHealth -= totalDamage;
         
-        if (_unitHealth.Health == 0)
+        if (_unitHealth.CurrentHealth == 0)
             Die();
     }
 

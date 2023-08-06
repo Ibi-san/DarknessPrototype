@@ -58,6 +58,7 @@ public class AbsorbAbility : MonoBehaviour
                 _isAbsorption = false;
                 ButtonAbsorbUI.SetActive(false);
                 TimerUI.SetActive(false);
+                Destroy(transform.parent.gameObject);
             }
         }
 
