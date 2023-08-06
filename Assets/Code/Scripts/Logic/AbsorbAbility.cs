@@ -9,11 +9,13 @@ public class AbsorbAbility : MonoBehaviour
     public TextMeshProUGUI AbsorptionTimerUI;
 
     [SerializeField] private KeyCode _absorbKey = KeyCode.B;
-    [SerializeField] private float _timeToAbsorb = 5f;
+    [SerializeField] private float _timeToAbsorb = 1f;
+    [SerializeField] private float _timeToDisappear = 5f;
 
     private bool _isAbsorption = false;
     private bool _canAbsorbed = false;
     private float _absorptionTimer = 0f;
+    private float _disappearTimer = 0f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -42,7 +44,9 @@ public class AbsorbAbility : MonoBehaviour
 
     private void Update()
     {
-        
+        _disappearTimer += Time.deltaTime;
+        if (_disappearTimer >= _timeToDisappear)
+            Destroy(transform.parent.gameObject);
 
         if (_isAbsorption)
         {

@@ -20,8 +20,7 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private Transform _weaponMuzzle;
     [SerializeField] private Projectile _projectilePrefab;
-    //[SerializeField] private ForceMode2D _forceMode = ForceMode2D.Impulse;
-    [SerializeField, Min(0f)] private float _force = 10f;
+    [SerializeField, Min(0f)] private float _arrowSpeed = 10f;
 
 
     private float _timeMeleeAtkDone = 0;
@@ -83,9 +82,6 @@ public class PlayerCombat : MonoBehaviour
     public void PerformAttackProjectile(Vector3 clickPos)
     {
         var projectile = Instantiate(_projectilePrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
-
-        //projectile.Rigidbody2D.AddForce(_weaponMuzzle.forward * _force, _forceMode);
-        projectile.Rigidbody2D.DOMove(clickPos, 1).OnComplete(() => Destroy(projectile.gameObject));
-        Debug.Log(_weaponMuzzle.forward + " - " + _force);
+        projectile.Rigidbody2D.DOMove(clickPos, _arrowSpeed).SetSpeedBased().OnComplete(() => Destroy(projectile.gameObject));
     }
 }
