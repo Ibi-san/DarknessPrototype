@@ -4,13 +4,13 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public float Speed = 5;
-    
+
     public float DashSpeed = 50f;
     public float DashDuration = 0.2f;
     public float DashCooldown = 1f;
 
 
-    
+
     private float _dashEndTime;
     private float _lastDashTime;
     private bool _isDashing = false;
@@ -28,18 +28,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        LookAtMouse();
+
 
         Vector2 dir = Vector2.zero;
         if (Input.GetKey(KeyCode.A))
+        {
             dir.x = -1;
+            transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+        }
         else if (Input.GetKey(KeyCode.D))
+        {
             dir.x = 1;
+            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        }
 
         if (Input.GetKey(KeyCode.W))
+        {
             dir.y = 1;
+            transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
         else if (Input.GetKey(KeyCode.S))
+        {
             dir.y = -1;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
 
         dir.Normalize();
         _rigid.velocity = Speed * dir;
@@ -47,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
         if (_isDashing && Time.time > _dashEndTime)
             _isDashing = false;
 
-        if (Input.GetKeyDown(KeyCode.C) && 
-            Time.time > _dashEndTime && 
+        if (Input.GetKeyDown(KeyCode.C) &&
+            Time.time > _dashEndTime &&
             Time.time - _lastDashTime >= DashCooldown)
             Dash();
     }
@@ -61,24 +73,32 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 dashDirection = Vector2.zero;
         if (Input.GetKey(KeyCode.A))
+        {
             dashDirection.x = -1;
+            transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+        }
         else if (Input.GetKey(KeyCode.D))
+        {
             dashDirection.x = 1;
+            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        }
+
         if (Input.GetKey(KeyCode.W))
+        {
             dashDirection.y = 1;
+            transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
         else if (Input.GetKey(KeyCode.S))
+        {
             dashDirection.y = -1;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
 
         dashDirection.Normalize();
-        
+
         Vector2 targetPosition = _rigid.position + (dashDirection * DashSpeed * DashDuration);
         _rigid.MovePosition(targetPosition);
     }
 
-    private void LookAtMouse()
-    {
-        Vector3 mousePos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = _mainCamera.transform.position.z;
-        transform.LookAt(mousePos, Vector3.back);
-    }
+
 }

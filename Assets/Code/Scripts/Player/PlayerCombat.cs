@@ -1,11 +1,13 @@
 ﻿using Code.Scripts.Player;
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
-[RequireComponent (typeof(PlayerStatus))]
+[RequireComponent(typeof(PlayerStatus))]
 public class PlayerCombat : MonoBehaviour
 {
     private PlayerStatus _playerStatus;
+    private PlayerMovement _playerMovement;
 
     [Header("Set in Inspector")]
     [Header("Melee")]
@@ -24,6 +26,7 @@ public class PlayerCombat : MonoBehaviour
     //[SerializeField] private ForceMode2D _forceMode = ForceMode2D.Impulse;
     [SerializeField, Min(0f)] private float _force = 10f;
 
+    private bool _isAttacking = false;
 
     private float _timeMeleeAtkDone = 0;
     private float _timeMeleeAtkNext = 0;
@@ -34,7 +37,11 @@ public class PlayerCombat : MonoBehaviour
     [Header("EditorTest")]
     [SerializeField] private GameObject _slashPrefab;
 
-    private void Awake() => _playerStatus = GetComponent<PlayerStatus>();
+    private void Awake()
+    {
+        _playerStatus = GetComponent<PlayerStatus>();
+        _playerMovement = GetComponent<PlayerMovement>();
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && Time.time >= _timeMeleeAtkNext)
@@ -46,10 +53,18 @@ public class PlayerCombat : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && Time.time >= _timeProjectileAtkNext)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            PerformAttackProjectile(mousePos);
-            _timeProjectileAtkDone = Time.time + ProjectileAttackDuration;
-            _timeProjectileAtkNext = Time.time + ProjectileAttackDelay;
+            if (!_isAttacking)
+            {
+                _isAttacking = true;
+                _playerMovement.enabled = false;
+                RotatePlayer();
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                PerformAttackProjectile(mousePos);
+                _timeProjectileAtkDone = Time.time + ProjectileAttackDuration;
+                _timeProjectileAtkNext = Time.time + ProjectileAttackDelay;
+                StartCoroutine(DelayedEnablePlayerMovement());
+                _isAttacking = false;
+            }
         }
     }
 
@@ -83,10 +98,47 @@ public class PlayerCombat : MonoBehaviour
 
     public void PerformAttackProjectile(Vector3 clickPos)
     {
-        var projectile = Instantiate(_projectilePrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
+        Vector2 direction = (clickPos - (Vector3)_weaponMuzzle.position).normalized;
 
+        var projectile = Instantiate(_projectilePrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
+        //projectile.Rigidbody2D.velocity = direction * _force;
         //projectile.Rigidbody2D.AddForce(_weaponMuzzle.forward * _force, _forceMode);
         projectile.Rigidbody2D.DOMove(clickPos, 1).OnComplete(() => Destroy(projectile.gameObject));
         Debug.Log(_weaponMuzzle.forward + " - " + _force);
+    }
+
+    public void RotatePlayer()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = (mousePosition - transform.position).normalized;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        if (angle >= -45f && angle < 45f)
+        {
+            // Право
+            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        }
+        else if (angle >= 45f && angle < 135f)
+        {
+            // Верх
+            transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+        else if (angle >= -135f && angle < -45f)
+        {
+            // Низ
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else
+        {
+            // Лево
+            transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+        }
+    }
+
+    private IEnumerator DelayedEnablePlayerMovement()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _playerMovement.enabled = true;
     }
 }
