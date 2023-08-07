@@ -1,7 +1,8 @@
 ﻿using System;
+using Code.Scripts.Logic;
 using UnityEngine;
 
-public class UnitHealth : MonoBehaviour
+public class UnitHealth : MonoBehaviour, IStat
 {
     [SerializeField] private Unit _unit;
 

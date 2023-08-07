@@ -4,7 +4,7 @@ using System.Linq;
 using Code.Scripts.Logic;
 using UnityEngine;
 
-public class UnitAttack : MonoBehaviour
+public class UnitAttack : MonoBehaviour, IStat
 {
     [SerializeField] private Unit _unit;
 
@@ -37,34 +37,29 @@ public class UnitAttack : MonoBehaviour
         CurrentDamage = _unit.Config.Damage;
     }
 
-    public void PerformAttack(IDamageable recipientDamageable)
-    {
-        recipientDamageable.ApplyDamage(CurrentDamage);
-    }
-
     public void AddModifier(StatModifier modifier)
     {
         if (modifier == null) return;
         Modifiers.Add(modifier);
-        Modifiers.ForEach(x=> CurrentDamage += x.Value);
-
+        CurrentDamage += modifier.Value;
     }
 
-    public void RemoveModifier(StatModifier modifier)
+    public void RemoveModifier<T>(T modifier)
     {
         if (modifier == null) return;
-        Modifiers.Remove(modifier);
-        Modifiers.ForEach(x=> CurrentDamage += x.Value);
+        
+        var removeModifiers = Modifiers.Where(x => x.Source is T).ToList();
+        
+        foreach (var removeModifier in removeModifiers)
+        {
+            CurrentDamage -= removeModifier.Value;
+            Modifiers.Remove(removeModifier);
+        }
     }
 
-    public void RemoveModifier<T>(T type)
+    public void PerformAttack(IDamageable recipientDamageable)
     {
-        if (type == null) return;
-        // var statModifier = Modifiers.FirstOrDefault(x => x.Source.GetType() == typeof(T));
-        // print(statModifier);
-        // Modifiers.Remove(statModifier);
-        Modifiers.ForEach(x=> CurrentDamage -= x.Value);
-
+        recipientDamageable.ApplyDamage(CurrentDamage);
     }
 }
 
