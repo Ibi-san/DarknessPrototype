@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: _unitHealth
       value: 
       objectReference: {fileID: 427022028}
+    - target: {fileID: 656981058044995206, guid: e7ee4a1330700dc4699f0e59658f850d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 656981058501409460, guid: e7ee4a1330700dc4699f0e59658f850d, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -1775,7 +1779,8 @@ MonoBehaviour:
   TimerUI: {fileID: 521504252}
   AbsorptionTimerUI: {fileID: 521504254}
   _absorbKey: 98
-  _timeToAbsorb: 5
+  _timeToAbsorb: 1
+  _timeToDisappear: 5
 --- !u!212 &1089396525
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -88,8 +88,8 @@ public class PlayerCombat : MonoBehaviour
 
                 if (damageable != null)
                 {
-                    damageable.ApplyDamage(_playerStatus.PlayerAttack.Damage);
-                    Debug.Log(gameObject.name + " наносит ему - " + hitCollider.name + " урон = " + _playerStatus.PlayerAttack.Damage);
+                    damageable.ApplyDamage(_playerStatus.PlayerAttack.CurrentDamage);
+                    Debug.Log(gameObject.name + " наносит ему - " + hitCollider.name + " урон = " + _playerStatus.PlayerAttack.CurrentDamage);
                 }
             }
         }

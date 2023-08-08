@@ -22,6 +22,9 @@ public class PlayerHealth : UnitHealth, IDamageable
             ApplyDamage(1);
             Debug.Log("Текущее здоровье: " + _playerStatus.PlayerHealth.CurrentHealth);
         }
+        
+        if(Input.GetKeyDown(KeyCode.U))
+            Heal(1);
     }
     
     public void ApplyDamage(int damage)
@@ -33,6 +36,14 @@ public class PlayerHealth : UnitHealth, IDamageable
 
         _playerStatus.PlayerHealth.CurrentHealth -= totalDamage;
         _playerStatus.PlayerInsanity.InsanityValue += _insanityRiseValue;
+    }
+
+    public void Heal(int amount)
+    {
+        if (amount < 0)
+            throw new ArgumentOutOfRangeException(nameof(amount));
+
+        _playerStatus.PlayerHealth.CurrentHealth += amount;
     }
 
     private int ProcessDamage(int damage)
