@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Code.Scripts.Logic;
 using UnityEngine;
 
-public class PlayerInsanity : MonoBehaviour, IStat
+public class PlayerInsanity : MonoBehaviour, IModifier
 {
     public event Action<float> OnInsanityChanged;
     private const float MaxInsanityValue = 100f;
