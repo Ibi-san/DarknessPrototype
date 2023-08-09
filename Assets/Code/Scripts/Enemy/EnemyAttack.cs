@@ -16,7 +16,7 @@ public class EnemyAttack : UnitAttack
     {
         base.Awake();
         _enemyUnit = GetComponent<EnemyUnit>();
-        print(Damage);
+        print(CurrentDamage);
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -26,10 +26,10 @@ public class EnemyAttack : UnitAttack
 
         if (damageable != null && Time.time >= _timeMeleeAtkNext && _enemyUnit.IsAlive)
         {
-            print(Damage);
-            damageable.ApplyDamage(Damage);
+            print(CurrentDamage);
+            damageable.ApplyDamage(CurrentDamage);
             _timeMeleeAtkNext = Time.time + MeleeAttackDelay;
-            Debug.Log(gameObject.name + " наносит ему - " + other.name + " урон = " + Damage);
+            Debug.Log(gameObject.name + " наносит ему - " + other.name + " урон = " + CurrentDamage);
         }
     }
 }

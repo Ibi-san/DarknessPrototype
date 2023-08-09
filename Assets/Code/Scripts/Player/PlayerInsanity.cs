@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
+using Code.Scripts.Logic;
 using UnityEngine;
 
-public class PlayerInsanity : MonoBehaviour
+public class PlayerInsanity : MonoBehaviour, IStat
 {
     public event Action<float> OnInsanityChanged;
     private const float MaxInsanityValue = 100f;

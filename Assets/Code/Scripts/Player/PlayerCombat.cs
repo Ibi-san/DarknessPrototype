@@ -88,22 +88,23 @@ public class PlayerCombat : MonoBehaviour
 
                 if (damageable != null)
                 {
-                    damageable.ApplyDamage(_playerStatus.PlayerAttack.Damage);
-                    Debug.Log(gameObject.name + " наносит ему - " + hitCollider.name + " урон = " + _playerStatus.PlayerAttack.Damage);
+                    damageable.ApplyDamage(_playerStatus.PlayerAttack.CurrentDamage);
+                    Debug.Log(gameObject.name + " наносит ему - " + hitCollider.name + " урон = " + _playerStatus.PlayerAttack.CurrentDamage);
                 }
             }
         }
     }
 
-    public void PerformAttackProjectile(Vector3 clickPos)
+    private void PerformAttackProjectile(Vector3 clickPos)
     {
 
         var projectile = Instantiate(_projectilePrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
+        projectile.transform.LookAt(clickPos, Vector3.back);
         projectile.Rigidbody2D.DOMove(clickPos, _arrowSpeed).SetSpeedBased().OnComplete(() => Destroy(projectile.gameObject));
 
     }
 
-    public void RotatePlayer()
+    private void RotatePlayer()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = (mousePosition - transform.position).normalized;
