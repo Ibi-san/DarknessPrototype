@@ -2,7 +2,7 @@
 using Code.Scripts.Logic;
 using UnityEngine;
 
-public class UnitHealth : MonoBehaviour, IStat
+public class UnitHealth : MonoBehaviour, IModifier
 {
     [SerializeField] private Unit _unit;
 

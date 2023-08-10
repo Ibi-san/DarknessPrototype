@@ -6,9 +6,9 @@ namespace Code.Scripts.Logic
     public class StatModifier
     {
         public readonly int Value;
-        public readonly IStat Source;
+        public readonly IModifier Source;
 
-        public StatModifier(int value, IStat source)
+        public StatModifier(int value, IModifier source)
         {
             Value = value;
             Source = source;

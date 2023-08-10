@@ -4,7 +4,7 @@ using System.Linq;
 using Code.Scripts.Logic;
 using UnityEngine;
 
-public class UnitAttack : MonoBehaviour, IStat
+public class UnitAttack : MonoBehaviour, IModifier
 {
     [SerializeField] private Unit _unit;
 
