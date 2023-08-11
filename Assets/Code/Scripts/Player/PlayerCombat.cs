@@ -97,9 +97,11 @@ public class PlayerCombat : MonoBehaviour
 
     private void PerformAttackProjectile(Vector3 clickPos)
     {
+
         var projectile = Instantiate(_projectilePrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
         projectile.transform.LookAt(clickPos, Vector3.back);
         projectile.Rigidbody2D.DOMove(clickPos, _arrowSpeed).SetSpeedBased().OnComplete(() => Destroy(projectile.gameObject));
+
     }
 
     private void RotatePlayer()
