@@ -50,7 +50,7 @@ public class ItemTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void UpdateTooltip()
     {
-        ItemNameText.text = _currentItemData.ItemName;
+        ItemNameText.text = _currentItemData.Name;
         ItemTypeText.text = _currentItemData.Type.ToString();
         ItemDamageText.text = "Damage: " + _currentItemData.Damage;
         ItemIconImage.sprite = _currentItemData.Icon;
