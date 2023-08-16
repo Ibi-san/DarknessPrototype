@@ -3,18 +3,32 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class ItemTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ItemTooltip : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHandler*/
 {
+    public static ItemTooltip Instance { get; private set; }
+
     public TextMeshProUGUI ItemNameText;
     public TextMeshProUGUI ItemTypeText;
     public TextMeshProUGUI ItemDamageText;
     public Image ItemIconImage;
+    public CanvasGroup TooltipCanvasGroup;
 
     private ItemData _currentItemData;
     private RectTransform _tooltipRectTransform;
 
+    [SerializeField] private float xOffset;
+    [SerializeField] private float yOffset;
+
     private void Awake()
     {
+        if (Instance != null && Instance != this) 
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
         _tooltipRectTransform = GetComponent<RectTransform>();
     }
 
@@ -23,29 +37,32 @@ public class ItemTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (gameObject.activeSelf)
         {
             Vector2 cursorPosition = Input.mousePosition;
-            _tooltipRectTransform.position = cursorPosition;
+            Vector2 offset = new Vector2(xOffset, yOffset);
+            var delta = cursorPosition - offset;
+            _tooltipRectTransform.position = delta;
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        ShowTooltip();
-    }
+    //public void OnPointerEnter(PointerEventData eventData)
+    //{
+    //    ShowTooltip();
+    //}
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        HideTooltip();
-    }
+    //public void OnPointerExit(PointerEventData eventData)
+    //{
+    //    HideTooltip();
+    //}
 
     public void ShowTooltip()
     {
+        if (_currentItemData == null) return;
         UpdateTooltip();
-        gameObject.SetActive(true);
+        TooltipCanvasGroup.alpha = 1;
     }
 
     public void HideTooltip()
     {
-        gameObject.SetActive(false);
+        TooltipCanvasGroup.alpha = 0;
     }
 
     public void UpdateTooltip()

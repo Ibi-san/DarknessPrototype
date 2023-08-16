@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77bddbc5d7140b9479bea16187bbc6ab, type: 3}
   m_Name: Big Potion Body
   m_EditorClassIdentifier: 
-  ItemName: Big Potion Body
+  Name: Big Potion Body
+  Description: 
   Type: 2
   Damage: 0
   Icon: {fileID: 0}

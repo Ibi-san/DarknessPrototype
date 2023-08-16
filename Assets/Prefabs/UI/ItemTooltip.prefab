@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 558353831341672069}
   - component: {fileID: 5408007553435912604}
   m_Layer: 0
-  m_Name: Type
+  m_Name: ItemType_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 3406486706868513944}
   - component: {fileID: 8634359449766339545}
   m_Layer: 0
-  m_Name: Icon
+  m_Name: Item_icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 122511279736365467}
   - component: {fileID: 1858481187242036860}
   m_Layer: 0
-  m_Name: Name
+  m_Name: ItemName_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -404,6 +404,9 @@ MonoBehaviour:
   ItemTypeText: {fileID: 5408007553435912604}
   ItemDamageText: {fileID: 1217420361413392446}
   ItemIconImage: {fileID: 8634359449766339545}
+  TooltipCanvasGroup: {fileID: 0}
+  xOffset: -10
+  yOffset: 10
 --- !u!1 &3899183540104775411
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +419,7 @@ GameObject:
   - component: {fileID: 8420636094571119327}
   - component: {fileID: 4397418637174107974}
   m_Layer: 0
-  m_Name: BG
+  m_Name: Tooltip_background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -492,7 +495,7 @@ GameObject:
   - component: {fileID: 5258959973318621133}
   - component: {fileID: 1217420361413392446}
   m_Layer: 0
-  m_Name: Damage
+  m_Name: WeaponDamage_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

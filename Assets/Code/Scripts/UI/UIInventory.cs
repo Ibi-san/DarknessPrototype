@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,13 +14,34 @@ public class UIInventory : MonoBehaviour
     {
         for (int i = 0; i < size; i++)
         {
-            UIItem item = Instantiate(_itemPrefab, Vector3.zero, Quaternion.identity);
-            item.transform.SetParent(_contentPanel);
+            UIItem item = Instantiate(_itemPrefab, _contentPanel);
             _items.Add(item);
+            item.OnItemClicked += HandleItemSelection;
         }
     }
 
-    public void Show() => gameObject.SetActive(true);
+    private void HandleItemSelection(UIItem item)
+    {
+        foreach (UIItem otherItems in _items)
+        {
+            otherItems.Deselect();
+        }
+
+        item.Select();
+    }
+
+    public void Show() 
+    {
+        gameObject.SetActive(true);
+    }
 
     public void Hide() => gameObject.SetActive(false);
+
+    private void OnDisable()
+    {
+        foreach (var item in _items)
+        {
+            item.OnItemClicked -= HandleItemSelection;
+        }
+    }
 }
