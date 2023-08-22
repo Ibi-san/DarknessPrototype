@@ -10,8 +10,9 @@ public class IsoPlayerMovement : MonoBehaviour
     public float DashDuration = 0.2f;
     public float DashCooldown = 1f;
 
+    public LayerMask EnvironmentLayer;
 
-
+    [SerializeField] private float _offsetDash = 0.2f;
     private float _dashEndTime;
     private float _lastDashTime;
     private bool _isDashing = false;
@@ -41,13 +42,9 @@ public class IsoPlayerMovement : MonoBehaviour
 
     private void MovementPlayer()
     {
-        Vector2 currentPos = _rigidbody.position;
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
-        inputVector = Vector2.ClampMagnitude(inputVector, 1);
-        Vector2 movement = inputVector * MovementSpeed;
-        Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
+
+        Vector2 movement = GetDirection() * MovementSpeed;
+        Vector2 newPos = _rigidbody.position + movement * Time.fixedDeltaTime;
         _isoRenderer.SetDirection(movement);
         _rigidbody.MovePosition(newPos);
     }
@@ -58,14 +55,30 @@ public class IsoPlayerMovement : MonoBehaviour
         _dashEndTime = Time.time + DashDuration;
         _lastDashTime = Time.time;
 
-        Vector2 currentPos = _rigidbody.position;
+        Vector2 dashDirection = GetDirection();
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dashDirection, DashSpeed * DashDuration, EnvironmentLayer);
+
+        Vector2 targetPosition;
+        if (hit.collider != null)
+        {
+            targetPosition = hit.point - (dashDirection * _offsetDash);
+        }
+        else
+        {
+            targetPosition = _rigidbody.position + (dashDirection * DashSpeed * DashDuration);
+        }
+
+        _rigidbody.MovePosition(targetPosition);
+
+    }
+
+    private Vector2 GetDirection()
+    {
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
-        inputVector = Vector2.ClampMagnitude(inputVector, 1);
-        Vector2 movement = inputVector * MovementSpeed;
-        Vector2 newPos = currentPos + (movement * DashSpeed * DashDuration);
-        _isoRenderer.SetDirection(movement);
-        _rigidbody.MovePosition(newPos);
+        Vector2 directionVector = new Vector2(horizontalInput, verticalInput);
+        directionVector = Vector2.ClampMagnitude(directionVector, 1);
+        return directionVector;
     }
 }
