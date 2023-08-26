@@ -42,6 +42,7 @@ public class IsoPlayerMovement : MonoBehaviour
 
     private void MovementPlayer()
     {
+        _rigidbody.velocity = new Vector2(0, 0);
 
         Vector2 movement = GetDirection() * MovementSpeed;
         Vector2 newPos = _rigidbody.position + movement * Time.fixedDeltaTime;
